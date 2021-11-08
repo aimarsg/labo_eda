@@ -1,10 +1,9 @@
 package eda;
+import eda.practica2.ListaPeliculas;
+import eda.practica3.GraphHash;
+
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -232,6 +231,16 @@ public class ListaActores {
 	public void guardarFichero(){
 		this.listaPelis.guardarLista();
 
+	}
+
+	//metodo practica 3
+	public GraphHash crearGrafo(){
+		GraphHash grafo=new GraphHash();
+		grafo.crearGrafo(this);
+		return grafo;
+	}
+	public HashMap<String,Actor> getTabla(){
+		return this.tabla;
 	}
 
 	public void eliminarActoresParaPruebas(){

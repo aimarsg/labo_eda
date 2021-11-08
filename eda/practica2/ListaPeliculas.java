@@ -1,5 +1,7 @@
-package eda;
+package eda.practica2;
 
+import eda.Actor;
+import eda.Pelicula;
 import eda.practica2.UnorderedDoubleLinkedList;
 
 import java.io.File;

@@ -1,5 +1,7 @@
 package eda;
 
+import eda.practica2.ListaPeliculas;
+
 public class Actor implements Comparable<Actor> {
 	
 	private String nombre;
