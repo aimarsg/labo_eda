@@ -19,9 +19,9 @@ public class ListaPeliculas {
 		this.lista=new UnorderedDoubleLinkedList<Pelicula>();
 	}
 
-	public int getLength(){
-		return (tabla.size());
-	}//para pruebas
+	//public int getLength(){
+		//return (lista.count);
+	//}//para pruebas
 
 	
 	
@@ -35,7 +35,8 @@ public class ListaPeliculas {
 	}
 	
 	public Pelicula buscarPelicula(String pTitulo) {
-		return(this.tabla.get(pTitulo));
+		Pelicula peli = new Pelicula(pTitulo,0);
+		return(this.lista.find(peli));
 	}
 	
 	public boolean esta(Pelicula pPelicula) {
@@ -55,7 +56,7 @@ public class ListaPeliculas {
 		}
 	}
 	public void eliminarPeli(Pelicula p){
-		this.tabla.remove(p.getTitulo());
+		this.lista.remove(p);
 	}
 
 	public void guardarLista(){
@@ -96,8 +97,11 @@ public class ListaPeliculas {
 	}
 
 	public void eliminarActor(Actor pActor){//eliminar un actor de todas las peliculas de la lista
-		for (String key: tabla.keySet()){
-			tabla.get(key).eliminarActor(pActor.getNombre());
+		Iterator<Pelicula> itr=lista.iterator();
+		Pelicula p;
+		while (itr.hasNext()){
+			p=itr.next();
+			p.eliminarActor(pActor.getNombre());
 		}
 	}
 	

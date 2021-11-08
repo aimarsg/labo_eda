@@ -1,5 +1,6 @@
 package eda;
 
+import java.lang.annotation.Inherited;
 import java.util.HashMap;
 
 public class Pelicula {
