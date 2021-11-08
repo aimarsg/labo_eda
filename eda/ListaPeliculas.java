@@ -21,6 +21,9 @@ public class ListaPeliculas {
 		return (tabla.size());
 	}//para pruebas
 
+	public HashMap<String, Pelicula> getTabla(){
+		return (this.tabla);
+	}
 	
 	
 	/*private Iterator<Pelicula> getIterator() {

@@ -11,12 +11,12 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class ListaPeliculas {
+public class ListaPeliculas2 {
 	
 	//private ArrayList<Pelicula> lista;
 	//private HashMap<String, Pelicula> tabla;
 	private UnorderedDoubleLinkedList<Pelicula> lista;
-	public ListaPeliculas() {
+	public ListaPeliculas2() {
 		//this.tabla= new HashMap<String, Pelicula>();
 		this.lista=new UnorderedDoubleLinkedList<Pelicula>();
 	}

@@ -1,5 +1,5 @@
 package eda;
-import eda.practica2.ListaPeliculas;
+
 
 import java.io.IOException;
 import java.util.HashMap;

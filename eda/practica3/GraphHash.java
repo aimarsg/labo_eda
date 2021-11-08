@@ -2,6 +2,7 @@ package eda.practica3;
 
 import eda.Actor;
 import eda.ListaActores;
+import eda.Pelicula;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,11 +17,21 @@ public class GraphHash {
 
         // COMPLETAR CÓDIGO
         HashMap<String, Actor> lista=lActores.getTabla();
-        HashMap<>
+        HashMap<String, Pelicula> pelis;
+        HashMap<String, Actor> actores;
         Actor actor;
+        Pelicula peli;
         for (String a:lista.keySet()){
             actor=lista.get(a);
-
+            pelis=actor.getMiLista().getTabla();
+            for (String p:pelis.keySet()){
+                peli=pelis.get(p);
+                actores=peli.getActores();
+                for (String actorDePeli:actores.keySet()){
+                    actor.anadirColega(actores.get(actorDePeli));
+                }
+            }
+            //pasar arraylist y eso
         }
 
     }
@@ -34,6 +45,8 @@ public class GraphHash {
             System.out.println();
         }
     }
-    public boolean estanConectados(String a1, String a2)
+    public boolean estanConectados(String a1, String a2){
+
+    }
     // COMPLETAR CÓDIGO
 }

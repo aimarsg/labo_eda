@@ -1,19 +1,34 @@
 package eda;
 
-import eda.practica2.ListaPeliculas;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Actor implements Comparable<Actor> {
 	
 	private String nombre;
 	private ListaPeliculas lista;
+	private HashMap<String, Actor> colegas ;
 	//private int edad;
 
 	public Actor(String pNombre/*, int pEdad*/) {
 		this.nombre = pNombre;
 		//this.edad = pEdad;
 		this.lista = new ListaPeliculas();
+		this.colegas=new HashMap<>();
 	}
-	
+
+	public void anadirColega(Actor pActor){
+		//post: se añade el colega solo si no esta y si no es el propio actor
+		if (!colegas.containsKey(pActor.getNombre()) && !pActor.getNombre().equals(this.nombre)){
+			this.colegas.put(pActor.nombre, pActor);
+		}
+
+	}
+	public ArrayList<Actor> devolverColegas(){
+		ArrayList<Actor> lista=new ArrayList<>(this.colegas.values());
+		return (lista);
+	}
 	public Pelicula buscarPeli(String pPeli) {		
 		return (this.lista.buscarPelicula(pPeli));
 	}

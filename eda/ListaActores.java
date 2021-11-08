@@ -1,5 +1,4 @@
 package eda;
-import eda.practica2.ListaPeliculas;
 import eda.practica3.GraphHash;
 
 import java.io.File;
