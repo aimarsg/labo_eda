@@ -15,9 +15,9 @@ public class Pelicula {
 	
 	public void incrementarRecaudacion(float pCuanto) {
 		this.recaudacion=this.recaudacion+pCuanto;}
-	
-	public boolean equals (Pelicula pPelicula) {
-		return(pPelicula.titulo==this.titulo);}
+
+	public boolean equals (Object pPelicula) {
+		return(((Pelicula)pPelicula).titulo.equals(this.titulo));}
 	
 	public String getTitulo (){
 		return (this.titulo);

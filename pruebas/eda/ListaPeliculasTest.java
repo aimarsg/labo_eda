@@ -62,6 +62,7 @@ public class ListaPeliculasTest {
         assertTrue(lista.esta(p5));
         assertTrue(lista.esta(p6));
     }
+    @Test
     void esta(){
         //lista vacia
         assertEquals(lista.getLength(), 0);
@@ -87,6 +88,7 @@ public class ListaPeliculasTest {
         assertTrue(lista.esta(p6));
 
     }
+    @Test
     void buscarPelicula(){
         //lista vacia
         assertEquals(lista.getLength(), 0);
@@ -107,6 +109,7 @@ public class ListaPeliculasTest {
         assertNull(lista.buscarPelicula("juanito periquito"));
         assertNotNull(lista.buscarPelicula("paladin"));
     }
+    @Test
     void eliminarPeli(){
         //lista vacia
         assertEquals(lista.getLength(), 0);
@@ -129,17 +132,20 @@ public class ListaPeliculasTest {
         lista.anadirPelicula(p6);
 
         assertEquals(lista.getLength(), 4);
-        lista.anadirPelicula(p3);
+        lista.eliminarPeli(p3);
         assertEquals(lista.getLength(), 3);
         lista.eliminarPeli(p4);
         assertEquals(lista.getLength(), 2);
     }
-
+    @Test
     void eliminarActor(){
         p1.anadirActor(a1);
         p1.anadirActor(a2);
         p2.anadirActor(a1);
         p3.anadirActor(a1);
+        lista.anadirPelicula(p1);
+        lista.anadirPelicula(p2);
+        lista.anadirPelicula(p3);
         lista.eliminarActor(a1);
         assertEquals(p1.getActores().size(), 1);
         assertEquals(p2.getActores().size(), 0);

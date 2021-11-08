@@ -116,7 +116,7 @@ public class ListaActores {
 
 		try{
 			String dirActual = System.getProperty("user.dir");
-			String pathIn = dirActual + File.separator + "FilmsActors20212022.txt";
+			String pathIn = dirActual + File.separator + "doc.txt";
 			Scanner entrada = new Scanner(new FileReader(pathIn));
 			String linea;
 
@@ -238,9 +238,9 @@ public class ListaActores {
 		this.tabla = new HashMap<String, Actor>();
 		this.listaPelis= new ListaPeliculas();
 	}
-	public int cuantasPelisParaPruebas(){
+	/*public int cuantasPelisParaPruebas(){
 		return (this.listaPelis.getLength());
-	}
+	}*/
 	public int cuantosActoresParaPruebas(){
 		return (this.tabla.size());
 	}
