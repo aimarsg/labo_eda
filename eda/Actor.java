@@ -25,8 +25,8 @@ public class Actor implements Comparable<Actor> {
 		}
 
 	}
-	public ArrayList<Actor> devolverColegas(){
-		ArrayList<Actor> lista=new ArrayList<>(this.colegas.values());
+	public ArrayList<String> devolverColegas(){
+		ArrayList<String> lista=new ArrayList<>(this.colegas.keySet());
 		return (lista);
 	}
 	public Pelicula buscarPeli(String pPeli) {		

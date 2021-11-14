@@ -4,21 +4,23 @@ import eda.Actor;
 import eda.ListaActores;
 import eda.Pelicula;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public class GraphHash {
     HashMap<String, ArrayList<String>> g;
+
+    public GraphHash(){
+        this.g = new HashMap<String, ArrayList<String>>();
+    }
 
     public void crearGrafo(ListaActores lActores) {
 
         // Post: crea el grafo desde la lista de actores
         // Los nodos son nombres de actores
 
-        // COMPLETAR CÓDIGO
-        HashMap<String, Actor> lista=lActores.getTabla();
-        HashMap<String, Pelicula> pelis;
-        HashMap<String, Actor> actores;
+        HashMap <String, Actor> lista=lActores.getTabla();
+        HashMap <String, Pelicula> pelis;
+        HashMap <String, Actor> actores;
         Actor actor;
         Pelicula peli;
         for (String a:lista.keySet()){
@@ -31,7 +33,7 @@ public class GraphHash {
                     actor.anadirColega(actores.get(actorDePeli));
                 }
             }
-            //pasar arraylist y eso
+            g.put(a,actor.devolverColegas());
         }
 
     }
