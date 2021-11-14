@@ -46,7 +46,25 @@ public class GraphHash {
         }
     }
     public boolean estanConectados(String a1, String a2){
-
+        Queue<String> porExaminar = new LinkedList<String>();
+        HashSet<String> examinados = new HashSet<String>();
+        boolean enc = false;
+        String act;
+        porExaminar.add(a1);
+        while (!porExaminar.isEmpty() && !enc){
+            act = porExaminar.remove();
+            if (!examinados.contains(act)) {//por si ya esta examinado
+                if (act.equals(a2)) {
+                    enc = true;
+                } else {
+                    examinados.add(act);
+                    for (String colega : g.get(act)) {
+                        porExaminar.add(colega);
+                    }
+                }
+            }
+        }
+        return enc;
     }
     // COMPLETAR CÓDIGO
 }
