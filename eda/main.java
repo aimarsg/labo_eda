@@ -47,7 +47,8 @@ public class main {
             switch (option) {
                 case 0:
                     Reloj miReloj=new Reloj();
-                    ListaActores.getMiLista().cargarLista();
+                    System.out.println("escribe el nombre del archivo:           ");
+                    ListaActores.getMiLista().cargarLista(Teclado.getMiTeclado().leerString());
                     System.out.println("fin de la operacion:  "+miReloj.elapsedTime());
 
                     break;

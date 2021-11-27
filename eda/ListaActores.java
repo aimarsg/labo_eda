@@ -110,11 +110,11 @@ public class ListaActores {
 
 
 
-	public void cargarLista(){
+	public void cargarLista(String nombreDelFichero){
 
 		try{
 			String dirActual = System.getProperty("user.dir");
-			String pathIn = dirActual + File.separator + "doc1.txt";
+			String pathIn = dirActual + File.separator + nombreDelFichero;
 			Scanner entrada = new Scanner(new FileReader(pathIn));
 			String linea;
 
@@ -142,7 +142,7 @@ public class ListaActores {
 		}
 		//catch(IOException e) {e.printStackTrace();}
 		catch (FileNotFoundException e){
-			System.out.println("El archivo FilmsActors20212022.txt no se ha podido encontrar en la carpeta  "+System.getProperty("user.dir"));
+			System.out.println("El archivo no se ha podido encontrar en la carpeta  "+System.getProperty("user.dir"));
 			System.out.println("No se ha podido cargar la lista");}
 	}
 	public void anadirPeliculaActor(String pTitulo, Float pRecaudacion, String pActor){

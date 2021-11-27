@@ -15,6 +15,10 @@ public class GraphHash {
         this.g = new HashMap<String, ArrayList<String>>();
     }
 
+    public HashMap<String, ArrayList<String>> getG(){
+        return this.g;
+    }
+
     public void crearGrafo(ListaActores lActores) {
 
         // Post: crea el grafo desde la lista de actores

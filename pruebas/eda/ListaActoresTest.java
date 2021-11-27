@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ListaActoresTest {
     ListaActores lista;
+    String d="doc.txt";
     @BeforeEach
     void setUp() {
         lista= ListaActores.getMiLista();
@@ -182,14 +183,14 @@ class ListaActoresTest {
         assertEquals(lista.cuantosActoresParaPruebas(),0);
         assertEquals(lista.cuantasPelisParaPruebas(), 0);
         //se carga la lista
-        lista.cargarLista();
+        lista.cargarLista(d);
         assertEquals(lista.cuantosActoresParaPruebas(),17);
         assertEquals(lista.cuantasPelisParaPruebas(), 8);
 
     }
     @Test
     void buscarPelicula() {
-        lista.cargarLista();
+        lista.cargarLista(d);
         //Pelicula que existe
         assertNotNull(lista.buscarPelicula("Kima"));
         //Pelicula no existente
@@ -216,7 +217,7 @@ class ListaActoresTest {
         //no existe
         assertNull(lista.devolverActoresDePeli("slow and furious"));
         //lista completa
-        lista.cargarLista();
+        lista.cargarLista(d);
         //existe
         assertEquals(lista.devolverActoresDePeli("Brahmastram").size(),5);
         //no existe
