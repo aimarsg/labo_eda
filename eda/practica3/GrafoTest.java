@@ -2,6 +2,7 @@ package eda.practica3;
 import eda.Actor;
 import eda.ListaActores;
 import eda.Pelicula;
+import eda.Reloj;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -79,6 +80,8 @@ public class GrafoTest {
         //no estan conectados
         assertFalse(g.estanConectados("Devon, Tony", "Singh, Jaspal"));
 
+
+
     }
 
     @Test
@@ -131,5 +134,16 @@ public class GrafoTest {
         for(int i = 0; i < camino.size(); i++) {
             System.out.println(camino.get(i));
         }
+    }
+    @Test
+    public void calcularTiempoTest(){
+        lista.cargarLista("FilmsActors20212022-20000-first-lines.txt");
+        Reloj miReloj = new Reloj();
+        g.crearGrafo(lista);
+        System.out.println(" Time (crearGrafo): " + miReloj.elapsedTime());
+
+        miReloj = new Reloj();
+        g.calcularConexiones(50);
+        System.out.println(" Time (calcularConexiones(50)): " + miReloj.elapsedTime());
     }
 }

@@ -110,4 +110,17 @@ public class GraphHash {
 
         }
     }
+
+    public void calcularConexiones(int n){
+        Random randomGenerator = new Random();
+        Object[] a = g.keySet().toArray();
+
+        for (int i = 1; i <= n; i++){
+            int x = randomGenerator.nextInt(g.size());
+            int y = randomGenerator.nextInt(g.size());
+            System.out.println("Prueba: " + i + " ");
+            estanConectados((String) a[x], (String) a[y]);
+        }
+    }
+
 }
