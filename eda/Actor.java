@@ -9,6 +9,7 @@ public class Actor implements Comparable<Actor> {
 	private String nombre;
 	private ListaPeliculas lista;
 	private HashMap<String, Actor> colegas ;
+	double pageRank;
 	//private int edad;
 
 	public Actor(String pNombre/*, int pEdad*/) {
@@ -16,6 +17,7 @@ public class Actor implements Comparable<Actor> {
 		//this.edad = pEdad;
 		this.lista = new ListaPeliculas();
 		this.colegas=new HashMap<>();
+		this.pageRank=0.0;
 	}
 
 	public void anadirColega(Actor pActor){

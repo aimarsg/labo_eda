@@ -9,7 +9,7 @@ import java.sql.Array;
 import java.util.*;
 
 public class GraphHash {
-    HashMap<String, ArrayList<String>> g;
+    public HashMap<String, ArrayList<String>> g;
 
     public GraphHash(){
         this.g = new HashMap<String, ArrayList<String>>();

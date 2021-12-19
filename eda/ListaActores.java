@@ -1,10 +1,8 @@
 package eda;
 import eda.practica3.GraphHash;
-
 import java.io.File;
 import java.io.*;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class ListaActores {
@@ -238,9 +236,110 @@ public class ListaActores {
 		grafo.crearGrafo(this);
 		return grafo;
 	}
+	//page rank
+	public HashMap<String, Double> pageRank(String fichero){
+		// Post: el resultado es el valor del algoritmo PageRank para cada actordel grafo
+
+		this.cargarLista(fichero);
+		GraphHash grafo = new GraphHash();
+		grafo.crearGrafo(this);//se calculan los colegas de los actores
+		double n = grafo.g.size();
+		HashMap<String, Double> prAnterior = new HashMap<>();
+		HashMap<String, Double> prNuevo = new HashMap<>();
+		HashMap<String, Double> aux;
+		//iteracion 0
+		for (String nombre : grafo.g.keySet()) {
+			prAnterior.put(nombre, (1.0/n));
+			prNuevo.put(nombre, 0.0);
+		}
+		double diferencia = 1.0;
+		Double prActor;
+		Double d=0.85;
+		while (diferencia>0.0001){
+			diferencia = 0.0;
+			for (String nombre: grafo.g.keySet()){
+				prActor = 0.0;
+
+				for (String colega : grafo.g.get(nombre)){
+					prActor = prActor + (prAnterior.get(colega)/grafo.g.get(colega).size());
+				}
+				prActor = ((1-d)/n) + (prActor*d);
+				prNuevo.put(nombre, prActor);
+
+				//calcular diferencias
+				diferencia = diferencia + Math.abs(prAnterior.get(nombre) - prNuevo.get(nombre));
+			}
+
+			aux = prAnterior;
+			prAnterior = prNuevo;
+			prNuevo = aux;
+		}
+
+		return prAnterior;
+	}
+	public ArrayList<Par> ordenarPorPageRank(ArrayList<String> actores, String fichero) {
+		HashMap<String, Double> pageRank = pageRank(fichero);
+		Par[] lista = new Par[actores.size()];
+		for (int i = 0; i< actores.size(); i++){
+			String actor = actores.get(i);
+			lista[i] = new Par(actor, pageRank.get(actor));
+		}
+		//ordenar el array
+		mergeSort2(lista);
+		ArrayList<Par> listaR = new ArrayList<Par>(List.of(lista));
+		return listaR;
+	}
+	private void mergeSort2(Par[] laTabla){
+		mergeSort2(laTabla, 0, laTabla.length-1);
+	}
+	private void mergeSort2 (Par[] tabla, int inicio, int fin){
+		if ( inicio < fin ) { // hay más de un elemento en la tabla
+			mergeSort2(tabla, inicio, (inicio+fin)/2);
+			mergeSort2(tabla, ((inicio+fin)/2)+1, fin);
+			mezcla2(tabla, inicio, (inicio+fin)/2, fin);
+		}
+
+	}
+
+	private void mezcla2 (Par[] tabla, int i, int centro, int f){
+		Par[] laMezcla = (new Par[f-i+1]);
+		int izq = i;
+		int der = centro+1;
+		int k = 0; //indice para rellenar laMezcla
+		while (izq <= centro && der <= f) {
+			if (tabla[izq].compareTo(tabla[der]) >= 0) {
+				laMezcla[k] = tabla[izq];
+				k++;
+				izq++;
+			} else {
+				laMezcla[k] = tabla[der];
+				k++;
+				der++;
+			}
+		}
+		if (izq > centro) {
+			while (der <= f) {
+				laMezcla[k] = tabla[der];
+				k++;
+				der++;
+			}
+		}
+		else {
+			while (izq <= centro) {
+				laMezcla[k] = tabla[izq];
+				k++;
+				izq++;
+			}
+		}
+		for (int j = i; j <= f; j++)
+			tabla[j] = laMezcla[j - i];
+	}
+
+
 	public HashMap<String,Actor> getTabla(){
 		return this.tabla;
 	}
+
 
 	public void eliminarActoresParaPruebas(){
 		this.tabla = new HashMap<String, Actor>();
@@ -253,5 +352,4 @@ public class ListaActores {
 		return (this.tabla.size());
 	}
 }
-
 
