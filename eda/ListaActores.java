@@ -237,48 +237,63 @@ public class ListaActores {
 		return grafo;
 	}
 	//page rank
-	public HashMap<String, Double> pageRank(String fichero){
+	public HashMap<String, Double> pageRank(){
+		GraphHash grafo=new GraphHash();
+		grafo.crearGrafo(this);
+		return pageRank(grafo);
+	}
+
+	public HashMap<String, Double> pageRank(GraphHash grafo){
 		// Post: el resultado es el valor del algoritmo PageRank para cada actordel grafo
 
-		this.cargarLista(fichero);
-		GraphHash grafo = new GraphHash();
-		grafo.crearGrafo(this);//se calculan los colegas de los actores
+		//GraphHash grafo = new GraphHash();
+		//grafo.crearGrafo(this);//se calculan los colegas de los actores
 		double n = grafo.g.size();
+
 		HashMap<String, Double> prAnterior = new HashMap<>();
 		HashMap<String, Double> prNuevo = new HashMap<>();
 		HashMap<String, Double> aux;
 		//iteracion 0
+		int i = 0;
 		for (String nombre : grafo.g.keySet()) {
-			prAnterior.put(nombre, (1.0/n));
+			prAnterior.put(nombre, (1.0 / n));
 			prNuevo.put(nombre, 0.0);
 		}
 		double diferencia = 1.0;
 		Double prActor;
-		Double d=0.85;
-		while (diferencia>0.0001){
+		Double d = 0.85;
+		while (diferencia > 0.0001) {
 			diferencia = 0.0;
-			for (String nombre: grafo.g.keySet()){
+			for (String nombre : grafo.g.keySet()) {
 				prActor = 0.0;
 
-				for (String colega : grafo.g.get(nombre)){
-					prActor = prActor + (prAnterior.get(colega)/grafo.g.get(colega).size());
+				for (String colega : grafo.g.get(nombre)) {
+					prActor = prActor + (prAnterior.get(colega) / grafo.g.get(colega).size());
 				}
-				prActor = ((1-d)/n) + (prActor*d);
+				prActor = ((1 - d) / n) + (prActor * d);
 				prNuevo.put(nombre, prActor);
 
 				//calcular diferencias
 				diferencia = diferencia + Math.abs(prAnterior.get(nombre) - prNuevo.get(nombre));
 			}
-
+			System.out.println("iteracion:   " + i + " diff:  " + diferencia);
 			aux = prAnterior;
 			prAnterior = prNuevo;
 			prNuevo = aux;
-		}
+			i++;
 
+
+
+		}
 		return prAnterior;
 	}
-	public ArrayList<Par> ordenarPorPageRank(ArrayList<String> actores, String fichero) {
-		HashMap<String, Double> pageRank = pageRank(fichero);
+	public ArrayList<Par> ordenarPorPageRank(ArrayList<String> actores) {
+		GraphHash grafo=new GraphHash();
+		grafo.crearGrafo(this);
+		return ordenarPorPageRank(actores, grafo);
+	}
+	public ArrayList<Par> ordenarPorPageRank(ArrayList<String> actores, GraphHash grafo) {
+		HashMap<String, Double> pageRank = pageRank(grafo);
 		Par[] lista = new Par[actores.size()];
 		for (int i = 0; i< actores.size(); i++){
 			String actor = actores.get(i);

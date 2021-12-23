@@ -10,6 +10,21 @@ import java.util.*;
 
 public class GraphHash {
     public HashMap<String, ArrayList<String>> g;
+    public void anadirElemento(String e1, String e2){
+        ArrayList<String > lista = g.get(e1);
+        if (lista==null){
+            lista=new ArrayList<String>();
+            lista.add(e2);
+            g.put(e1, lista);
+        }
+        else {
+            lista.add(e2);
+            g.put(e1, lista);
+        }
+    }
+    public void anadirElemento(String e1, ArrayList<String> e2){
+        g.put(e1, e2);
+    }
 
     public GraphHash(){
         this.g = new HashMap<String, ArrayList<String>>();

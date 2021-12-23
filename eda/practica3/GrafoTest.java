@@ -43,6 +43,13 @@ public class GrafoTest {
         lista.anadirActor("pepe");
         g.crearGrafo(lista);
         assertEquals(3, g.getG().size());
+
+        g = new GraphHash();
+        lista.cargarLista("FilmsActors20212022-20000-first-lines.txt");
+        Reloj mireloj = new Reloj();
+        g.crearGrafo(lista);
+        System.out.println(mireloj.elapsedTime());
+
     }
     @Test
     public void estanConectadosTest(){
